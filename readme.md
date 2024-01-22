@@ -1,4 +1,4 @@
-This is Rustman, a hangman clone developed in Rust as my first Rust project.
+This is Rustman, a hangman game developed in Rust as my first Rust project.
 
 I suggest following these instructions for [setting up Rust in Windows](https://learn.microsoft.com/en-us/windows/dev-environment/rust/setup)
 
