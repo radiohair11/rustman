@@ -51,7 +51,7 @@ fn main() -> io::Result<()> {
 fn print_welcome() -> io::Result<()> {
     clearscreen::clear().unwrap();
     let welcome_msg: &str = "Welcome to Rustman!\n\n\
-                                Rustman is like Hangman, but instead of saving a\
+                                Rustman is like Hangman, but instead of saving a \
                                 human from capital punishment\n\
                                 you'll be saving the robot from rusting away!\n\n\
                                 Press Enter to start!";
@@ -88,6 +88,7 @@ fn print_rustman(num_guesses_left: i8) -> io::Result<()> {
     clearscreen::clear().unwrap();
 
     // TODO: figure out install pathing
+    // TODO: detect OS and change path accordingly
     match num_guesses_left {
         6 => {
             let contents = fs::read_to_string("res\\rustman6.txt")
