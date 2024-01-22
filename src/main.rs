@@ -140,7 +140,7 @@ fn print_rustman(num_guesses_left: i8) -> io::Result<()> {
 
 /// ask the player for a letter
 fn ask(guessed_letters: &mut String) -> io::Result<char> {
-    println!("Please guess a letter");
+    println!("Please guess a lowercase letter");
     loop {
         if let Event::Key(KeyEvent {
             code: KeyCode::Char(c),
