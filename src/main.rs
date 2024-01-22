@@ -48,7 +48,7 @@ fn main() -> io::Result<()> {
 
 /// prints the game's welcome message
 fn print_welcome() -> io::Result<()> {
-    clearscreen::clear().unwrap();
+    //clearscreen::clear().unwrap();
     let welcome_msg: &str = "Welcome to Rustman!\n\n\
                                 Rustman is like Hangman, but instead of saving a\
                                 human from capital punishment\n\
