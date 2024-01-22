@@ -37,12 +37,13 @@ fn main() -> io::Result<()> {
         }
 
         if word == answer {
-            print_win(word);
+            println!("You saved Rustman!! Congratulations! The word was {}", word);
             std::process::exit(0);
         }
     } // end while loop
 
-    print_lose(word);
+    println!("Rustman rusted away. The word was {}. You lose :(", word);
+
     Ok(())
 } // fn main
 
@@ -70,6 +71,7 @@ fn print_welcome() -> io::Result<()> {
     Ok(())
 } // fn print_welcome
 
+/// generate a random English word
 fn generate_word() -> &'static str {
     let mut word: &str = "";
     while word.len() < MIN_WORD_LENGTH || word.len() > MAX_WORD_LENGTH {
@@ -77,7 +79,7 @@ fn generate_word() -> &'static str {
     }
 
     word
-}
+} // fn generate_word
 
 /// prints a text picture version of rustman
 /// that depends on how many guesses are left.
@@ -121,7 +123,7 @@ fn print_rustman(num_guesses_left: i8) -> io::Result<()> {
             let contents = fs::read_to_string("res\\rustman1.txt")
                 .expect("File rustman1.txt could not be opened!");
             println!("{}", contents);
-            println!("1 guesses left");
+            println!("1 guess left");
         }
         _ => (),
     }
@@ -150,13 +152,15 @@ fn ask(guessed_letters: &mut String) -> io::Result<char> {
             }
         }
     }
-}
+} // fn ask
 
+/// check the word for the guessed letter and return a vector with the position and matching letter
 fn check_guess(letter: char, word: &str) -> Vec<(usize, &str)> {
     let v: Vec<_> = word.match_indices(letter).collect();
     v
 }
 
+/// fill the in progress answer with the guessed letter contained in the secret word
 fn fill_answer(hits: Vec<(usize, &str)>, answer: &mut String) -> String {
     let mut new_answer = String::new();
     for i in 0..answer.len() {
@@ -172,8 +176,9 @@ fn fill_answer(hits: Vec<(usize, &str)>, answer: &mut String) -> String {
         }
     }
     new_answer
-}
+} // fn fill_answer
 
+/// print the in progress solution with some formatting
 fn print_answer(answer: &String) -> io::Result<()> {
     let mut answer_display = String::new();
     for i in 0..answer.len() {
@@ -182,12 +187,4 @@ fn print_answer(answer: &String) -> io::Result<()> {
     }
     println!("{}", answer_display);
     Ok(())
-}
-
-fn print_lose(word: String) {
-    println!("Rustman rusted away. The word was {}. You lose :(", word);
-}
-
-fn print_win(word: String) {
-    println!("You saved Rustman!! Congratulations! The word was {}", word);
-}
+} // fn print_answer
