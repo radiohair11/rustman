@@ -86,42 +86,48 @@ fn generate_word() -> &'static str {
 /// pictures are contained in files of the type <number>_guesses_left.txt
 fn print_rustman(num_guesses_left: i8) -> io::Result<()> {
     clearscreen::clear().unwrap();
+    let mut res_path = String::new();
+
+    if cfg!(windows) {
+        res_path = "res\\".to_owned();
+    } else if cfg! (unix) {
+        res_path = "res/".to_owned();
+    }
 
     // TODO: figure out install pathing
-    // TODO: detect OS and change path accordingly
     match num_guesses_left {
         6 => {
-            let contents = fs::read_to_string("res\\rustman6.txt")
+            let contents = fs::read_to_string(res_path + "rustman6.txt")
                 .expect("File rustman6.txt could not be opened!");
             println!("{}", contents);
             println!("6 guesses left");
         }
         5 => {
-            let contents = fs::read_to_string("res\\rustman5.txt")
+            let contents = fs::read_to_string(res_path + "rustman5.txt")
                 .expect("File rustman5.txt could not be opened!");
             println!("{}", contents);
             println!("5 guesses left");
         }
         4 => {
-            let contents = fs::read_to_string("res\\rustman4.txt")
+            let contents = fs::read_to_string(res_path + "rustman4.txt")
                 .expect("File rustman4.txt could not be opened!");
             println!("{}", contents);
             println!("4 guesses left");
         }
         3 => {
-            let contents = fs::read_to_string("res\\rustman3.txt")
+            let contents = fs::read_to_string(res_path + "rustman3.txt")
                 .expect("File rustman3.txt could not be opened!");
             println!("{}", contents);
             println!("3 guesses left");
         }
         2 => {
-            let contents = fs::read_to_string("res\\rustman2.txt")
+            let contents = fs::read_to_string(res_path + "rustman2.txt")
                 .expect("File rustman2.txt could not be opened!");
             println!("{}", contents);
             println!("2 guesses left");
         }
         1 => {
-            let contents = fs::read_to_string("res\\rustman1.txt")
+            let contents = fs::read_to_string(res_path + "rustman1.txt")
                 .expect("File rustman1.txt could not be opened!");
             println!("{}", contents);
             println!("1 guess left");
